@@ -25,3 +25,5 @@ If the child does not understand how to sweep they could click on the picture of
     * Run json server for db.json (json-server --watch db.json)
     * Open index.html in the browser
 
+## Research
+https://getgoally.com/blog/create-chore-charts-for-kids-with-adhd-or-autism-that-work/

@@ -32,3 +32,33 @@
    * Edit a chore that was put in (submit, patch)
    * searching through a list of chores (submit, get)
    * Prental protion of the app and a youth part of the app
+
+
+## more chore approprate examples:
+ ** Chore chart ideas for 4 to 6-year-olds
+  * Pick up loose toys, place them back in toy box or shelves
+  * Feed household pets
+  * Water house plants
+  * Wipe kitchen table clean
+  * Put shoes in shoe bin or on shoe rack 
+  
+ ** Chore chart ideas for 5 to 8-year-olds
+  * Load dishwasher
+  * Unload dishwasher
+  * Unload dryer
+  * Put away groceries
+  * Clean windows and doorknobs
+  
+ ** Chore chart ideas for 9 to 11-year-olds
+  * Sweep floors
+  * Take out trash
+  * Mop floors
+  * Load and start washing machine
+  * Fold towels
+  
+ ** Chore chart ideas for kids ages 12+
+  * Walk pets
+  * Watch younger siblings
+  * Vacuum floors
+  * Prepare simple dinners or side dishes
+  * Wash the car 
