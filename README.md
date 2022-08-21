@@ -26,4 +26,5 @@ If the child does not understand how to sweep they could click on the picture of
     * Open index.html in the browser
 
 ## Research
-https://getgoally.com/blog/create-chore-charts-for-kids-with-adhd-or-autism-that-work/
+** https://getgoally.com/blog/create-chore-charts-for-kids-with-adhd-or-autism-that-work/
+** https://www.porchlighteducation.org/modules/summaries/teaching-children-to-help-with-chores-summary.pdf

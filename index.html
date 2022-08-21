@@ -13,17 +13,50 @@
 
   <title>Phase 1 Project</title>
 </head>
-<body>
-  <nav class="blue darken-2">
-    <div class="nav-wrapper container">
-      <a href="#!" class="brand-logo">Special Aide</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn">Add Tasks</a></li>
-        <li><a class="waves-effect waves-light btn">Suggested chores</a></li>
-      </ul>
-    </div>
-  </nav>
+<body class="yellow darken-1">
+<nav class="blue darken-4">
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo" id="home-page">Special Aide</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#" id="chore-example">Example Chores</a></li>
+      <li><a href="#" id="new-chore">Add Chore</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <script src="javascripts/index.js"></script>
-</body>
+    <div id="main" class="container white" style="padding: 10px; margin-top: 20px;"></div>
+    <div id="chore container" class="container"></div> 
+
+    <div class="new-chore-container">
+      <form id="add-chore-form" class="container lightgrey" style="background-color: mediumblue;" >
+
+        <input
+          type="text"
+          name="name"
+          value=""
+          placeholder="Enter a chore name..."
+          class="input-text"
+        />
+        <br />
+        <input
+          type="text"
+          name="image"
+          value=""
+          placeholder="Enter a chore's image URL..."
+          class="input-text"
+        />
+        <br />
+        <input
+          type="submit"
+          name="submit"
+          value="Create Chore"
+          class="submit"
+        />
+      </form>
+    </div>
+
+    <div id="chore-collection"></div>
+
+    <script src="javascripts/index.js"></script>
+  </body>
 </html>
