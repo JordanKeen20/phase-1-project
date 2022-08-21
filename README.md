@@ -16,7 +16,7 @@ If a child does not know how to complete the chore/expectation they may click on
 
 If the child does not understand how to sweep they could click on the picture of a broom and dust pan. When they do a video of a person completeing the necessary steps will show them how.
 
-## requirements
+## requirements 
     * json-server installed
     * Visual Studios
 
