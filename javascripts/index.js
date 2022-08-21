@@ -21,8 +21,9 @@ function attachSpecialAidClickEvent(){
 }
 // Add Chore 
 function attachAddChoreClickEvent(){
-    addChore().addEventListener('click', addingNewChore)
+    addChore().addEventListener('click', renderAddChorePage)
 }
+
 
 
 
@@ -36,7 +37,7 @@ function renderAddChorePage(){
     const h3 = document.createElement("h3");
     const ul = document.createElement("ul");
     const li = document.createElement("li");
-    const div = document.createElement("div")
+    
     
 
     h3.innerText = "Add A Chore"
@@ -49,7 +50,7 @@ function renderAddChorePage(){
     
     mainDiv().appendChild(h3)
     mainDiv().appendChild(ul)
-    div.append(newChore)
+   
     
     
 
@@ -110,12 +111,6 @@ function fetchChoreList() {
         resetcontainer()
 }
 
-function addingNewChore() {
-    
-}
-
-
-
 
 
 
@@ -136,9 +131,13 @@ function resetmainpage(){
 
 
 // DOMContentLoaded
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
-    pageRefresh();
     attachExChoreClickEvent();
     attachSpecialAidClickEvent();
     attachAddChoreClickEvent();
-});
+    pageRefresh();
+})
+
+
