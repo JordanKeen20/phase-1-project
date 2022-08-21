@@ -4,10 +4,7 @@ const choreExample = () => document.getElementById("chore-example")
 const specialAid = () => document.getElementById("home-page")
 const addChore = ()=> document.getElementById("new-chore")
 const choreContainer = () => document.getElementById('chore container')
-const newChore = () => document.querySelector('#add-chore-form')
-const choreformCon = () => document.querySelector(".new-chore-container")
-
-
+const newDiv = () => document.getElementById("add-chore-form")
 
 // EventListeners
 
@@ -15,16 +12,16 @@ const choreformCon = () => document.querySelector(".new-chore-container")
 function attachExChoreClickEvent(){
     choreExample().addEventListener("click", fetchChoreList)
 }
-// Special Aid 
-function attachSpecialAidClickEvent(){
-    specialAid().addEventListener("click", pageRefresh)
-}
+
 // Add Chore 
 function attachAddChoreClickEvent(){
     addChore().addEventListener('click', renderAddChorePage)
 }
 
-
+// Special Aid 
+function attachSpecialAidClickEvent(){
+    specialAid().addEventListener("click", pageRefresh)
+}
 
 
 
@@ -37,8 +34,7 @@ function renderAddChorePage(){
     const h3 = document.createElement("h3");
     const ul = document.createElement("ul");
     const li = document.createElement("li");
-    
-    
+   
 
     h3.innerText = "Add A Chore"
     h3.style.marginTop = "0"
@@ -60,10 +56,8 @@ function pageRefresh(){
     //  HTML for the main page
     resetMainDiv();
     resetcontainer();
-    resetmainpage();
-     
-
-
+    resetNewDiv();
+    
     const h3 = document.createElement("h3")
     const p = document.createElement("p")
 
@@ -114,6 +108,7 @@ function fetchChoreList() {
 
 
 
+
 // helping functions
 
 function resetMainDiv(){
@@ -124,10 +119,9 @@ function resetcontainer(){
     choreContainer().innerText = ""
 }
 
-function resetmainpage(){
-    newChore().innerText= ""
+function resetNewDiv(){
+    newDiv().innerText = ""
 }
-
 
 
 // DOMContentLoaded
