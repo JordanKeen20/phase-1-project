@@ -2,9 +2,9 @@
 const mainDiv = () => document.getElementById("main")
 const choreExample = () => document.getElementById("chore-example")
 const specialAid = () => document.getElementById("home-page")
-const addChore = ()=> document.getElementById("new-chore")
+const lookUpHoliday = ()=> document.getElementById("new-holiday")
 const choreContainer = () => document.getElementById('chore container')
-const newDiv = () => document.getElementById("add-chore-form")
+
 
 // EventListeners
 
@@ -14,8 +14,8 @@ function attachExChoreClickEvent(){
 }
 
 // Add Chore 
-function attachAddChoreClickEvent(){
-    addChore().addEventListener('click', renderAddChorePage)
+function attachholidaysClickEvent(){
+    lookUpHoliday().addEventListener('click', holidays)
 }
 
 // Special Aid 
@@ -26,20 +26,27 @@ function attachSpecialAidClickEvent(){
 
 
 // EventHandlers
-function renderAddChorePage(){
+function renderNewHolidays(data){
     //  HTML for adding Chore Page
     resetMainDiv();
-    resetcontainer()
+    resetcontainer();
+   
 
     const h3 = document.createElement("h3");
     const ul = document.createElement("ul");
     const li = document.createElement("li");
+
+    const chorelist = document.getElementById('add-holiday-form')
+    const div = document.createElement('div')
+    const h2 = document.createElement('h2')
+    const h4 = document.createElement('h4')
+    
    
 
-    h3.innerText = "Add A Chore"
+    h3.innerText = "Get a holiday"
     h3.style.marginTop = "0"
 
-    li.innerText = "This is were you will make a chore list for your child. You must remember you will need a URL of a photo to help your child to visually see what they need to do!"
+    li.innerText = "This is were you will get ideas to take your child for a 'job well done' when they have completed their tasks."
      
 
     ul.appendChild(li)
@@ -56,7 +63,8 @@ function pageRefresh(){
     //  HTML for the main page
     resetMainDiv();
     resetcontainer();
-    resetNewDiv();
+    
+   
     
     const h3 = document.createElement("h3")
     const p = document.createElement("p")
@@ -98,11 +106,22 @@ function renderChorePage(chores){
     chorelist.append(div)
 }
 
+
+
 function fetchChoreList() {
     fetch("http://localhost:3000/chores") // returns promise
         .then(resp => resp.json()) // then runs the respons when it get a success then returns another promise
         .then(data => data.forEach(chores => renderChorePage(chores)))
         resetcontainer()
+}
+
+function holidays(){
+    fetch("https://date.nager.at/api/v2/publicholidays/2020/US")
+        .then(resp => resp.json())
+        .then(data =>{ 
+            // renderNewHolidays(data.name);
+            console.log('event', data)
+        })
 }
 
 
@@ -119,9 +138,7 @@ function resetcontainer(){
     choreContainer().innerText = ""
 }
 
-function resetNewDiv(){
-    newDiv().innerText = ""
-}
+
 
 
 // DOMContentLoaded
@@ -130,7 +147,7 @@ function resetNewDiv(){
 document.addEventListener("DOMContentLoaded", ()=>{
     attachExChoreClickEvent();
     attachSpecialAidClickEvent();
-    attachAddChoreClickEvent();
+    attachholidaysClickEvent();
     pageRefresh();
 })
 
