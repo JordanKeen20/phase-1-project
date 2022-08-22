@@ -4,6 +4,7 @@ const choreExample = () => document.getElementById("chore-example")
 const specialAid = () => document.getElementById("home-page")
 const lookUpHoliday = ()=> document.getElementById("new-holiday")
 const choreContainer = () => document.getElementById('chore container')
+const holidayreset = () => document.getElementById("add-holiday-form")
 
 
 // EventListeners
@@ -20,7 +21,7 @@ function attachholidaysClickEvent(){
 
 // Special Aid 
 function attachSpecialAidClickEvent(){
-    specialAid().addEventListener("click", pageRefresh)
+    specialAid().addEventListener("click", favorites)
 }
 
 
@@ -36,7 +37,7 @@ function renderNewHolidays(data){
     const ul = document.createElement("ul");
     const li = document.createElement("li");
 
-    const chorelist = document.getElementById('add-holiday-form')
+    const holidaylist = document.getElementById('add-holiday-form')
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
     const h4 = document.createElement('h4')
@@ -46,7 +47,12 @@ function renderNewHolidays(data){
     h3.innerText = "Get a holiday"
     h3.style.marginTop = "0"
 
-    li.innerText = "This is were you will get ideas to take your child for a 'job well done' when they have completed their tasks."
+    div.classList.add('card')
+    h2.textContent = data.name
+    h4.textContent = data.date
+    
+
+    li.innerText = "This is were you can look up holidays that your child can look forward to."
      
 
     ul.appendChild(li)
@@ -54,8 +60,8 @@ function renderNewHolidays(data){
     mainDiv().appendChild(h3)
     mainDiv().appendChild(ul)
    
-    
-    
+    div.append(h2, h4)
+    holidaylist.append(div)
 
 }
 
@@ -63,6 +69,7 @@ function pageRefresh(){
     //  HTML for the main page
     resetMainDiv();
     resetcontainer();
+    resetHoliday();
     
    
     
@@ -80,6 +87,8 @@ function pageRefresh(){
 function renderChorePage(chores){
     //  HTML for Chore page
     resetMainDiv();
+    resetHoliday()
+
 
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
@@ -93,6 +102,7 @@ function renderChorePage(chores){
     h3.innerText = "Chore Examples"
     h3.style.marginTop = "0"
     div.classList.add('card')
+
     p.innerText = 'Here are some chores you can use for examples of age appropriate chores.'
      h4.textContent = chores.name
      img.src = chores.image
@@ -112,16 +122,14 @@ function fetchChoreList() {
     fetch("http://localhost:3000/chores") // returns promise
         .then(resp => resp.json()) // then runs the respons when it get a success then returns another promise
         .then(data => data.forEach(chores => renderChorePage(chores)))
-        resetcontainer()
+        resetcontainer();
 }
 
 function holidays(){
     fetch("https://date.nager.at/api/v2/publicholidays/2020/US")
         .then(resp => resp.json())
-        .then(data =>{ 
-            // renderNewHolidays(data.name);
-            console.log('event', data)
-        })
+        .then(data => data.forEach(data => renderNewHolidays(data)))
+        resetHoliday();
 }
 
 
@@ -138,7 +146,9 @@ function resetcontainer(){
     choreContainer().innerText = ""
 }
 
-
+function resetHoliday(){
+    holidayreset().innerText = ""
+}
 
 
 // DOMContentLoaded
