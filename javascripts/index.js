@@ -5,7 +5,7 @@ const specialAid = () => document.getElementById("home-page")
 const lookUpHoliday = ()=> document.getElementById("new-holiday")
 const choreContainer = () => document.getElementById('chore container')
 const holidayreset = () => document.getElementById("add-holiday-form")
-
+const clear = () => document.getElementById("adding-chores");
 
 // EventListeners
 
@@ -21,7 +21,7 @@ function attachholidaysClickEvent(){
 
 // Special Aid 
 function attachSpecialAidClickEvent(){
-    specialAid().addEventListener("click", favorites)
+    specialAid().addEventListener("click", pageRefresh)
 }
 
 
@@ -32,6 +32,7 @@ function renderNewHolidays(data){
     resetMainDiv();
     resetcontainer();
    
+   
 
     const h3 = document.createElement("h3");
     const ul = document.createElement("ul");
@@ -41,8 +42,7 @@ function renderNewHolidays(data){
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
     const h4 = document.createElement('h4')
-    
-   
+
 
     h3.innerText = "Get a holiday"
     h3.style.marginTop = "0"
@@ -62,7 +62,6 @@ function renderNewHolidays(data){
    
     div.append(h2, h4)
     holidaylist.append(div)
-
 }
 
 function pageRefresh(){
@@ -71,17 +70,16 @@ function pageRefresh(){
     resetcontainer();
     resetHoliday();
     
-   
     
-    const h3 = document.createElement("h3")
-    const p = document.createElement("p")
+    const h3 = document.createElement("h3");
+    const p = document.createElement("p");
+    const div = document.createElement("div");
 
     h3.innerText = "Parental home page set up"
     p.innerText= "On the parental home page you have the option to create a list of age appropirate chores or you have access to a list of premade chores!"
 
     mainDiv().appendChild(h3)
     mainDiv().appendChild(p)
-
 }
 
 function renderChorePage(chores){
@@ -116,6 +114,9 @@ function renderChorePage(chores){
     chorelist.append(div)
 }
 
+// function addchoresList(){
+
+// }
 
 
 function fetchChoreList() {
@@ -130,6 +131,11 @@ function holidays(){
         .then(resp => resp.json())
         .then(data => data.forEach(data => renderNewHolidays(data)))
         resetHoliday();
+        clearBar();
+}
+
+function clearBar(){
+    clear().parentNode.removeChild(clear());
 }
 
 
@@ -149,6 +155,7 @@ function resetcontainer(){
 function resetHoliday(){
     holidayreset().innerText = ""
 }
+
 
 
 // DOMContentLoaded
