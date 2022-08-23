@@ -5,7 +5,7 @@ const specialAid = () => document.getElementById("home-page")
 const lookUpHoliday = ()=> document.getElementById("new-holiday")
 const choreContainer = () => document.getElementById('chore container')
 const holidayreset = () => document.getElementById("add-holiday-form")
-const clear = () => document.getElementById("adding-chores");
+
 
 // EventListeners
 
@@ -131,12 +131,8 @@ function holidays(){
         .then(resp => resp.json())
         .then(data => data.forEach(data => renderNewHolidays(data)))
         resetHoliday();
-        clearBar();
 }
 
-function clearBar(){
-    clear().parentNode.removeChild(clear());
-}
 
 
 
