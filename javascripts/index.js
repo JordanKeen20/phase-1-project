@@ -8,6 +8,7 @@ const holidayLists = () => document.getElementById("add-holiday-form");
 const exampleLists = () => document.getElementById("example-chore");
 const choreListContainer = document.getElementById("chore-list-container");
 const newChoreForm = () => document.querySelector('form');
+// const submitclear =() => document.getElementById('search-section')
 const choreURL = 'http://localhost:3000/chores'
 
 // EventListeners
@@ -40,7 +41,8 @@ function pageRefresh(){
     //  HTML for the main page
     resetMainDiv(); 
     resetholiday();
-    resetExample();   
+    resetExample(); 
+   
     
     
     const h3 = document.createElement("h3");
@@ -57,6 +59,7 @@ function examplepage(chores){
     // HTML for example chores
     resetMainDiv();
     resetholiday();
+   
 
 
     const h3 = document.createElement("h3");
@@ -92,6 +95,7 @@ function holidaypage(holidays){
     // HTML for holiday
     resetMainDiv();
     resetExample();
+   
     
 
     const h3 = document.createElement("h3");
@@ -135,38 +139,13 @@ function chorelist(newChore){
     const p = document.createElement("p");
     
     const ul = document.createElement('ul');
-    const div = document.createElement('div');
 
     h3.innerText = "List Chores"
     p.innerText = "Have fun making your list for your child!"
-    div.innerHTML = ` 
-    <div class="container">
-    <form class="add-chore-form">
-      <h3>Create a Chore!</h3>
-      <input type="text" name="name" value="" placeholder="Enter a chores name..." class="input-text"/>
-      <br />
-      <input type="text" name="image" value="" placeholder="Enter a chore image URL..." class="input-text"/>
-      <br />
-      <input type="submit" name="submit" value="Create Chore" class="submit"/>
-    </form>
-  </div>`
-
-  const dname = document.createElement('h2');
-  const img = document.createElement('img');
-
-  div.className ='card'
-  dname.textContent = newChore.name
-  img.src = newChore.image
-  img.className = 'choreContainer'
-
-
-
-  div.append(dname, img)
-  choreListContainer.append(div)   
+       
 
     mainDiv().appendChild(h3);
     mainDiv().appendChild(p);
-    ul.appendChild(div);
     mainDiv().appendChild(ul);
 }
 
