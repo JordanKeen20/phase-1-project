@@ -4,9 +4,11 @@ const examplebtn = () => document.getElementById('chore-example');
 const holidayExamplesbtn = () => document.getElementById('new-holiday');
 const listchoresbtn = () => document.getElementById('new-chores');
 const pageloadbtn = () => document.getElementById('home-page');
+const choreURL = ' http://localhost:3000/chores'
+
 // EventListeners
 function attachExampleBtnEventListener(){
-    examplebtn().addEventListener('click', examplepage )
+    examplebtn().addEventListener('click', fetchChoreList)
 }
 
 function attachListChoreBtnEventListener(){
@@ -14,7 +16,7 @@ function attachListChoreBtnEventListener(){
 }
 
 function attachHolidayExampleBtnEventListener(){
-    holidayExamplesbtn().addEventListener('click', holidaypage)
+    holidayExamplesbtn().addEventListener('click', holidays)
 }
 
 function attachPageLoadBtnEventListener(){
@@ -41,7 +43,8 @@ function pageRefresh(){
     mainDiv().appendChild(p)
 }
 
-function examplepage(){
+function examplepage(chores){
+    // HTML for example chores
     resetMainDiv();
 
     const h3 = document.createElement("h3");
@@ -55,20 +58,32 @@ function examplepage(){
 
 }
 
-function holidaypage(){
+function holidaypage(data){
+    // HTML for holiday
     resetMainDiv();
 
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
+    const ul = document.createElement('ul');
+
+    const div = document.createElement('div');
+    div.classList.add('card')
+   
+    const h2 = document.createElement('h2')
+    h2.textContent = data.name
 
     h3.innerText = "Holidays"
     p.innerText= "These are holidays throughout the year for your child to look forward to!"
 
     mainDiv().appendChild(h3)
     mainDiv().appendChild(p)
+    div.appendChild(h2)
+    ul.appendChild(div)
+    mainDiv().append(ul)
 }
 
 function chorelist(){
+    // HTML for Chore List 
     resetMainDiv();
 
     const h3 = document.createElement("h3");
@@ -114,6 +129,20 @@ function chorelist(){
     ul.appendChild(div);
     mainDiv().appendChild(ul);
 }
+
+// fetches
+function fetchChoreList() {
+    fetch(choreURL) // returns promise
+        .then(resp => resp.json()) // then runs the respons when it get a success then returns another promise
+        .then(data => data.forEach(chores => examplepage(chores)))   
+}
+
+function holidays(){
+    fetch("https://date.nager.at/api/v2/publicholidays/2020/US")
+        .then(resp => resp.json())
+        .then(data => data.forEach(data => holidaypage(data)))       
+}
+
 
 // helping functions
 
