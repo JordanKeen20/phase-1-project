@@ -28,9 +28,9 @@ function attachPageLoadBtnEventListener(){
     pageloadbtn().addEventListener('click', pageRefresh)
 }
 
-function attackNewChoreEventlistener(){
-    newChoreForm().addEventListener('submit', eventobj)
-}
+// function attackNewChoreEventlistener(){
+//     newChoreForm().addEventListener('submit', eventobj)
+// }
 
 
 
@@ -129,7 +129,7 @@ function holidaypage(holidays){
    
 }
 
-function chorelist(newChore){
+function chorelist(chores){
     // HTML for Chore List 
     resetMainDiv();
     resetholiday();
@@ -137,15 +137,28 @@ function chorelist(newChore){
 
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
-    
+    let li = document.createElement('li');
     const ul = document.createElement('ul');
 
     h3.innerText = "List Chores"
     p.innerText = "Have fun making your list for your child!"
-       
-
+    li.className = 'card'
+    li.innerHTML = `
+    <div id="chorecontainer" class="container"> 
+    <form class="add-chore-form"> 
+    <h3>Create a chore!</h3>
+        <input type="text" name="name" value="" placeholder="Enter a chore here..." class="input-text"/>
+        <br />
+        <input type="text" name="image" value="" placeholder="Enter a chores image URL..." class="input-text"/>
+        <br />
+        <input type="submit" name="submit" value="Create chore" class="submit"/>
+      </form>
+    </div>
+    `
+     
     mainDiv().appendChild(h3);
     mainDiv().appendChild(p);
+    ul.appendChild(li)
     mainDiv().appendChild(ul);
 }
 
@@ -205,6 +218,14 @@ function examplePageBtn(){
         resetExample();
 }
 
+// function getAllChores(){
+//     fetch(choreURL)
+//         .then(resp => resp.json())
+//         .then(chores => chores.forEach(chores => chorelist(chores)))
+// }
+
+
+
 // function submitBtn(){
 //     const choreId = choreobj.div
 //     fetch(`http://localhost:3000/chores/${choreId}`, {
@@ -220,7 +241,7 @@ function resetMainDiv(){
 }
 
 function resetholiday(){
-    holidayLists().innerText = ""
+    holidayLists().innerHTML = ""
 }
 
 function resetExample(){
