@@ -6,7 +6,9 @@ const listchoresbtn = () => document.getElementById('new-chores');
 const pageloadbtn = () => document.getElementById('home-page');
 const holidayLists = () => document.getElementById("add-holiday-form");
 const exampleLists = () => document.getElementById("example-chore");
-const choreURL = ' http://localhost:3000/chores'
+const choreListContainer = document.getElementById("chore-list-container");
+const newChoreForm = () => document.querySelector('form');
+const choreURL = 'http://localhost:3000/chores'
 
 // EventListeners
 function attachExampleBtnEventListener(){
@@ -23,6 +25,10 @@ function attachHolidayExampleBtnEventListener(){
 
 function attachPageLoadBtnEventListener(){
     pageloadbtn().addEventListener('click', pageRefresh)
+}
+
+function attackNewChoreEventlistener(){
+    newChoreForm().addEventListener('submit', eventobj)
 }
 
 
@@ -92,22 +98,23 @@ function holidaypage(holidays){
     const ul = document.createElement("ul");
     const li = document.createElement("li");
 
+    const holidayList = document.getElementById('add-holiday-form');
+    const div = document.createElement('div');
+    const dname = document.createElement('h2');
+    const ddate = document.createElement('h3');
+
 
     h3.innerText = "Get a holiday"
     h3.style.marginTop = "0"
     
     
-    li.innerText = "This is were you can look up holidays that your child can look forward to."
-     
-    ul.appendChild(li);
-
-    const holidayList = document.getElementById('add-holiday-form')
-    const div = document.createElement('div');
+    li.innerText = "This is were you can look up holidays that your child can look forward to."    
+    
     div.classList.add('card')
-    const dname = document.createElement('h2')
     dname.textContent = holidays.name
-    const ddate = document.createElement('h3')
     ddate.textContent = holidays.date
+
+    ul.appendChild(li);
 
     mainDiv().appendChild(h3);
     mainDiv().appendChild(ul);
@@ -118,7 +125,7 @@ function holidaypage(holidays){
    
 }
 
-function chorelist(){
+function chorelist(newChore){
     // HTML for Chore List 
     resetMainDiv();
     resetholiday();
@@ -144,7 +151,18 @@ function chorelist(){
     </form>
   </div>`
 
-  
+  const dname = document.createElement('h2');
+  const img = document.createElement('img');
+
+  div.className ='card'
+  dname.textContent = newChore.name
+  img.src = newChore.image
+  img.className = 'choreContainer'
+
+
+
+  div.append(dname, img)
+  choreListContainer.append(div)   
 
     mainDiv().appendChild(h3);
     mainDiv().appendChild(p);
@@ -152,17 +170,46 @@ function chorelist(){
     mainDiv().appendChild(ul);
 }
 
-function newChore(newChores){
-    const div = document.createElement('div');
-    const dname = document.createElement('h2');
-    const img = document.createElement('img');
+// function newChore(newChores){
+//     const div = document.createElement('div');
+//     const dname = document.createElement('h2');
+//     const img = document.createElement('img');
 
-    div.className ='card'
-    dname.textContent = newChores.name
-    img.src = newChores.image
-    img.className = 'choreContainer'
-    
-}
+//     div.className ='card'
+//     dname.textContent = newChores.name
+//     img.src = newChores.image
+//     img.className = 'choreContainer'
+
+//     div.append(h2, img)
+//     choreListContainer.append(div)   
+     
+// }
+
+// function eventobj(){
+    // eventobj.preventDefault();
+    // // get info for the event
+
+    // const newChores = {
+    //     name: eventobj.target.name.value,
+    //     image: eventobj.target.image.value
+    // }
+
+    // fetch(toysUrl,{
+    //     method: 'POST',
+    //     headers: {
+    //         'content-Type': 'application/json'},
+    //     body:JSON.stringify(newChores)
+    // })
+    // .then(resp = resp.json())
+    // .then(newChores => {
+    //     chorelist(newChores)
+    // })
+// }
+
+
+
+
+
 
 // fetches
 function holidaysfetch(){
@@ -179,7 +226,14 @@ function examplePageBtn(){
         resetExample();
 }
 
-
+// function submitBtn(){
+//     const choreId = choreobj.div
+//     fetch(`http://localhost:3000/chores/${choreId}`, {
+//         method: 'PATCH',
+//         hearders:{
+//             'content-Type':'application/json'},
+//     })
+// }
 // helping functions
 
 function resetMainDiv(){
