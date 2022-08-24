@@ -1,10 +1,12 @@
 // node
-const mainDiv = () => document.getElementById("main")
-const choreExample = () => document.getElementById("chore-example")
-const specialAid = () => document.getElementById("home-page")
-const lookUpHoliday = ()=> document.getElementById("new-holiday")
-const choreContainer = () => document.getElementById('chore container')
-const holidayreset = () => document.getElementById("add-holiday-form")
+const mainDiv = () => document.getElementById("main");
+const mainDiv2 = () => document.getElementById("main2")
+const choreExample = () => document.getElementById("chore-example");
+const specialAid = () => document.getElementById("home-page");
+const lookUpHoliday = ()=> document.getElementById("new-holiday");
+const choreContainer = () => document.getElementById('chore container');
+const holidayreset = () => document.getElementById("add-holiday-form");
+
 
 
 // EventListeners
@@ -30,9 +32,7 @@ function attachSpecialAidClickEvent(){
 function renderNewHolidays(data){
     //  HTML for adding Chore Page
     resetMainDiv();
-    resetcontainer();
-   
-   
+    resetcontainer(); 
 
     const h3 = document.createElement("h3");
     const ul = document.createElement("ul");
@@ -69,6 +69,7 @@ function pageRefresh(){
     resetMainDiv();
     resetcontainer();
     resetHoliday();
+    
     
     
     const h3 = document.createElement("h3");
@@ -114,23 +115,21 @@ function renderChorePage(chores){
     chorelist.append(div)
 }
 
-// function addchoresList(){
 
-// }
 
 
 function fetchChoreList() {
     fetch("http://localhost:3000/chores") // returns promise
         .then(resp => resp.json()) // then runs the respons when it get a success then returns another promise
         .then(data => data.forEach(chores => renderChorePage(chores)))
-        resetcontainer();
+        resetcontainer();     
 }
 
 function holidays(){
     fetch("https://date.nager.at/api/v2/publicholidays/2020/US")
         .then(resp => resp.json())
         .then(data => data.forEach(data => renderNewHolidays(data)))
-        resetHoliday();
+        resetHoliday();       
 }
 
 
@@ -161,7 +160,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     attachExChoreClickEvent();
     attachSpecialAidClickEvent();
     attachholidaysClickEvent();
-    pageRefresh();
+    pageRefresh();  
 })
 
 
