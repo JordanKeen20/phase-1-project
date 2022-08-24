@@ -6,7 +6,7 @@ const specialAid = () => document.getElementById("home-page");
 const lookUpHoliday = ()=> document.getElementById("new-holiday");
 const choreContainer = () => document.getElementById('chore container');
 const holidayreset = () => document.getElementById("add-holiday-form");
-
+const choreURL = 'http://localhost:3000/chores'
 
 
 // EventListeners
@@ -69,15 +69,14 @@ function pageRefresh(){
     resetMainDiv();
     resetcontainer();
     resetHoliday();
-    
-    
-    
+
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
     const div = document.createElement("div");
 
     h3.innerText = "Parental home page set up"
     p.innerText= "On the parental home page you have the option to create a list of age appropirate chores or you have access to a list of premade chores!"
+
 
     mainDiv().appendChild(h3)
     mainDiv().appendChild(p)
@@ -93,9 +92,14 @@ function renderChorePage(chores){
     const p = document.createElement("p");
 
     const chorelist = document.getElementById('chore container')
+
     const div = document.createElement('div')
+    div.className ='card'
     const h4 = document.createElement('h4')
+    h4.textContent = newChore.name
     const img = document.createElement('img')
+    img.src = newchore.image
+    img.className = 'chore-picture'
     
 
     h3.innerText = "Chore Examples"
@@ -118,8 +122,9 @@ function renderChorePage(chores){
 
 
 
+
 function fetchChoreList() {
-    fetch("http://localhost:3000/chores") // returns promise
+    fetch(choreURL) // returns promise
         .then(resp => resp.json()) // then runs the respons when it get a success then returns another promise
         .then(data => data.forEach(chores => renderChorePage(chores)))
         resetcontainer();     
