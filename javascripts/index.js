@@ -7,8 +7,7 @@ const pageloadbtn =  document.getElementById('home-page');
 const holidayLists =  document.getElementById("add-holiday-form");
 const exampleLists =  document.getElementById("example-chore");
 const choreListContainer = document.getElementById("chore-list-container");
-const newChoreForm =  document.querySelector('form');
-const createChorebtn = document.getElementById("submit")
+
 // URL short Cuts
 const choreURL = 'http://localhost:3000/chores'
 
@@ -27,10 +26,6 @@ function attachHolidayExampleBtnEventListener(){
 
 function attachPageLoadBtnEventListener(){
     pageloadbtn.addEventListener('click', pageRefresh)
-}
-
-function attackNewChoreEventlistener(){
-    createChorebtn.addEventListener('submit', newChores)
 }
 
 
@@ -130,45 +125,32 @@ function holidaypage(holidays){
    
 }
 
-function chorelist(){
-    // HTML for Chore List 
-    resetMainDiv();
-    resetholiday();
-    resetExample();
+function chorelist(chore){
+     // HTML for Chore List 
+     resetMainDiv();
+     resetholiday();
+     resetExample();
 
-    const h3 = document.createElement("h3");
-    const p = document.createElement("p");
-    let li = document.createElement('div');
-   
-
-    h3.innerText = "List Chores"
-    p.innerText = "Have fun making your list for your child!"
-
-    li.className = 'card'
-    li.innerHTML = `
-    <div id="chorecontainer" class="container"> 
-    <form class="add-chore-form"> 
-    <h3>Create a chore!</h3>
-        <input type="text" name="name" value="" placeholder="Enter a chore here..." class="input-text"/>
-        <br />
-        <input type="text" name="image" value="" placeholder="Enter a chores image URL..." class="input-text"/>
-        <br />
-        <input type="submit" id="submit" name="submit" value= "Create chore" class="submit"/>
-      </form>
-    </div>
-    `
+     const h3 = document.createElement("h3");
+     const p = document.createElement("p");
+     let listchore = document.getElementById('sumbit-chore');
+        
      
-    mainDiv.appendChild(h3);
-    mainDiv.appendChild(p);
-    mainDiv.appendChild(li)
+     h3.innerText = "List Chores"
+     p.innerText = "Have fun making your list for your child!"
+    //Building chore
+     
+     
+     
+     mainDiv.appendChild(h3);
+     mainDiv.appendChild(p);
+     mainDiv.appendChild(li)
     }
 
-    function newChores(createNewChore){
-
-    }
+    
 
 
-// fetches
+    // fetches
 
 function holidaysfetch(){
     fetch("https://date.nager.at/api/v2/publicholidays/2020/US") // returns a promise
