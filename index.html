@@ -28,7 +28,34 @@
     <div id="main" class="container white" style="padding: 10px; margin-top: 20px;"></div>
       <div id="add-holiday-form" class="container tan"></div>
       <div id="example-chore" class="container grey"></div>
-      <div id="sumbit-chore"></div>
+      <div id="sumbit-chore">
+        <form class="add-chore-form">
+          <h3 class="green">Create a Chore!</h3>
+  
+          <input class="white"
+            type="text"
+            name="name"
+            value=""
+            placeholder="chore name..."
+            class="input-text"
+          />
+          <br />
+          <input class="white"
+            type="text"
+            name="image"
+            value=""
+            placeholder="chore image URL..."
+            class="input-text"
+          />
+          <br />
+          <input
+            type="submit"
+            name="submit"
+            value="Create chore"
+            class="submit"
+          />
+        </form>
+      </div>
       <div id="chore-list-container">
         <ul id="chores-list"></ul>
       </div>

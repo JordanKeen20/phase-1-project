@@ -7,7 +7,7 @@ const pageloadbtn =  document.getElementById('home-page');
 const holidayLists =  document.getElementById("add-holiday-form");
 const exampleLists =  document.getElementById("example-chore");
 const choreListContainer = document.getElementById("chore-list-container");
-
+const submitchore = document.getElementById("sumbit-chore")
 // URL short Cuts
 const choreURL = 'http://localhost:3000/chores'
 
@@ -37,7 +37,9 @@ function pageRefresh(){
     //  HTML for the main page
     resetMainDiv(); 
     resetholiday();
-    resetExample(); 
+    resetExample();
+    removesubmitHTML()
+    
    
     
     
@@ -55,7 +57,7 @@ function examplepage(chores){
     // HTML for example chores
     resetMainDiv();
     resetholiday();
-   
+    
 
 
     const h3 = document.createElement("h3");
@@ -91,6 +93,7 @@ function holidaypage(holidays){
     // HTML for holiday
     resetMainDiv();
     resetExample();
+    
    
     
 
@@ -133,18 +136,16 @@ function chorelist(chore){
 
      const h3 = document.createElement("h3");
      const p = document.createElement("p");
-     let listchore = document.getElementById('sumbit-chore');
-        
-     
+     const div = document.createElement('div')
      h3.innerText = "List Chores"
      p.innerText = "Have fun making your list for your child!"
-    //Building chore
+   
      
      
      
      mainDiv.appendChild(h3);
      mainDiv.appendChild(p);
-     mainDiv.appendChild(li)
+     mainDiv.append(submitchore)
     }
 
     
@@ -183,6 +184,9 @@ function resetExample(){
     exampleLists.innerText = ""
 }
 
+function removesubmitHTML(){
+    submitchore.remove(submitchore)
+}
 
 
 // DOMContentLoaded
