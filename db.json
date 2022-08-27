@@ -1,14 +1,14 @@
 {
-    "chores": [
-      {
-        "chore": 1,
-        "name": "time to wake up",
-        "image": "https://media.istockphoto.com/vectors/little-boy-wake-up-in-the-morning-vector-id864365968?k=20&m=864365968&s=612x612&w=0&h=J3iMW3vp4p-ccbSp9pOwtXRLVjRSu7vF-PI4XhToZcY="
-      },
-      {
-        "chore": 2,
-        "name": "making the bed",
-        "image": "https://thumbs.dreamstime.com/b/cartoon-little-boy-making-bed-kids-doing-housework-chores-home-concept-vector-illustration-201041335.jpg"
-      }
-    ]
-  }
+  "chores": [
+    {
+      "id": 1,
+      "name": "time to wake up",
+      "image": "https://media.istockphoto.com/vectors/little-boy-wake-up-in-the-morning-vector-id864365968?k=20&m=864365968&s=612x612&w=0&h=J3iMW3vp4p-ccbSp9pOwtXRLVjRSu7vF-PI4XhToZcY="
+    },
+    {
+      "id": 2,
+      "name": "making the bed",
+      "image": "https://thumbs.dreamstime.com/b/cartoon-little-boy-making-bed-kids-doing-housework-chores-home-concept-vector-illustration-201041335.jpg"
+    }
+  ]
+}
