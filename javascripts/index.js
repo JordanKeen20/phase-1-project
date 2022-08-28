@@ -1,4 +1,4 @@
-// node
+//  // node
 const mainDiv =  document.getElementById("main");
 const examplebtn = document.getElementById('chore-example');
 const holidayExamplesbtn =  document.getElementById('new-holiday');
@@ -7,7 +7,9 @@ const pageloadbtn =  document.getElementById('home-page');
 const holidayLists =  document.getElementById("add-holiday-form");
 const exampleLists =  document.getElementById("example-chore");
 const choreListContainer = document.getElementById("chore-list-container");
-const submitchore = document.getElementById("sumbit-chore")
+const submitchore = document.getElementById("sumbit-chore");
+
+
 // URL short Cuts
 const choreURL = 'http://localhost:3000/chores'
 
@@ -17,7 +19,7 @@ function attachExampleBtnEventListener(){
 }
 
 function attachListChoreBtnEventListener(){
-    listchoresbtn.addEventListener('click', chorelist)
+    listchoresbtn.addEventListener('click',  createChoreList)
 }
 
 function attachHolidayExampleBtnEventListener(){
@@ -29,8 +31,6 @@ function attachPageLoadBtnEventListener(){
 }
 
 
-
-
 // EventHandlers
 
 function pageRefresh(){
@@ -38,7 +38,8 @@ function pageRefresh(){
     resetMainDiv(); 
     resetholiday();
     resetExample();
-    removesubmitHTML()
+    removesubmitHTML();
+   
     
    
     
@@ -128,88 +129,28 @@ function holidaypage(holidays){
    
 }
 
-function chorelist(listChores){
-     // HTML for Chore List 
-     resetMainDiv();
-     resetholiday();
-     resetExample();
 
-     const h3 = document.createElement("h3");
-     const p = document.createElement("p");
-     
-     h3.innerText = "List Chores"
-     p.innerText = "Have fun making your list for your child!"
 
-      //build chore
+function createChoreList(listChores){
+    resetMainDiv();
+    resetExample();
+    resetholiday();
+    
+    const h3 = document.createElement("h3");
+    const p = document.createElement("p");
+    
+    h3.innerText = "List Chores"
+    p.innerText = "Have fun making your list for your child!"
 
-     let choreCard = document.createElement('li')
-     choreCard.className = 'card'
-     choreCard.innerHTML = `
-         <div class="content">
-             <h4> ${listChores.name}</h4>
-             <img src="${listChores.image}">
-         </div>
-         <div>
-             <button id="delete"> Delete </button>
-         </div>
-     `
-     choreCard.querySelector("#delete").addEventListener('click', () =>{
-         choreCard.innerHTML= ''
-         deletechore(listChores.id)
-     })
-
-     mainDiv.appendChild(h3);
-      mainDiv.appendChild(p);
-
-     // add chore to dom
-     document.getElementById("chores-list").appendChild(choreCard)
-  }
- 
-     
-     
-document.querySelector("#add-chore").addEventListener('submit', handlechores)
-
-function handlechores(event){
-    event.preventDefault()
-    let choreObj = {
-        name: event.target.name.value,
-        image: event.target.image.value
-    }
-    chorelist(choreObj)
-    chorecreationlist(choreObj)
+        mainDiv.appendChild(h3);
+        mainDiv.appendChild(p);
+        mainDiv.appendChild(submitchore);
 }
-    // fetches/POST/PATCHES/DELETE
 
-    function starter(){
-        fetch('http://localhost:3000/chores')
-            .then(resp => resp.json())
-            .then(data => data.forEach(chores => createchorelist(chores)))
-    }
-    
-    function chorecreationlist(choreObj){
-        fetch('http://localhost:3000/chores', {
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(choreObj)
-        })
-        .then(resp => resp.json())
-        .then(chores => console.log(chores))
-    }
-    
-    function deletechore(id){
-        fetch(`http://localhost:3000/chores/${id}`,{
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(resp => resp.json())
-        .then(chores => console.log(chores))
-    
-    }
-    
+
+
+
+    // fetches/POST/PATCHES/DELETE
 
 function holidaysfetch(){
     fetch("https://date.nager.at/api/v2/publicholidays/2020/US") // returns a promise
@@ -225,10 +166,7 @@ function examplePageBtn(){
         resetExample();
 }
 
-
-
-
-// helping functions
+// // helping functions
 
 function resetMainDiv(){
     mainDiv.innerHTML = ""
@@ -258,4 +196,77 @@ document.addEventListener("DOMContentLoaded", ()=>{
    attachListChoreBtnEventListener();
 })
 
+
+document.querySelector("#add-chore").addEventListener('submit', handlechores)
+
+function handlechores(event){
+    event.preventDefault()
+    let choreObj = {
+        name: event.target.name.value,
+        image: event.target.image.value
+    } 
+    document.querySelector("#add-chore").reset()
+    createchorelist(choreObj)
+    chorecreationlist(choreObj)
+}
+
+function createchorelist(chores){
+
+    //build chore
+    let choreCard = document.createElement('li')
+    choreCard.className = 'card'
+    choreCard.innerHTML = `
+        <div class="content">
+            <h4> ${chores.name}</h4>
+            <img src="${chores.image}">
+        </div>
+        <div>
+            <button id="delete"> Delete </button>
+        </div>
+    `
+    choreCard.querySelector("#delete").addEventListener('click', () =>{
+        choreCard.innerHTML= ''
+        deletechore(chores.id)
+    })
+    
+    // add chore to dom
+    document.getElementById("chores-list").appendChild(choreCard)
+}
+
+
+function starter(){
+    fetch('http://localhost:3000/chores')
+        .then(resp => resp.json())
+        .then(data => data.forEach(chores => createchorelist(chores)))
+}
+
+function chorecreationlist(choreObj){
+    fetch('http://localhost:3000/chores', {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(choreObj)
+    })
+    .then(resp => resp.json())
+    .then(chores => console.log(chores))
+}
+
+function deletechore(id){
+    fetch(`http://localhost:3000/chores/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(resp => resp.json())
+    .then(chores => console.log(chores))
+
+}
+
+
+
+function codeHolder(){
+    starter();
+}
 
