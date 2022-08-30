@@ -94,6 +94,7 @@ function holidaypage(holidays){
     // HTML for holiday
     resetMainDiv();
     resetExample();
+    removechoreListContainer();
     
    
     
@@ -131,7 +132,7 @@ function holidaypage(holidays){
 
 
 
-function createChoreList(listChores){
+function createChoreList(){
     resetMainDiv();
     resetExample();
     resetholiday();
@@ -184,6 +185,11 @@ function removesubmitHTML(){
     submitchore.remove(submitchore)
 }
 
+function removechoreListContainer(){
+    choreListContainer.remove(choreListContainer)
+}
+
+
 
 // DOMContentLoaded
 
@@ -228,7 +234,7 @@ function createchorelist(chores){
         choreCard.innerHTML= ''
         deletechore(chores.id)
     })
-    
+
     // add chore to dom
     document.getElementById("chores-list").appendChild(choreCard)
 }
@@ -253,7 +259,7 @@ function chorecreationlist(choreObj){
 }
 
 function deletechore(id){
-    fetch(`http://localhost:3000/chores/${id}`, {
+    fetch(`http://localhost:3000/chores/id`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
