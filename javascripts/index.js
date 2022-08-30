@@ -259,7 +259,7 @@ function chorecreationlist(choreObj){
 }
 
 function deletechore(id){
-    fetch(`http://localhost:3000/chores/id`, {
+    fetch(`http://localhost:3000/chores/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
