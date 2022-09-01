@@ -151,7 +151,7 @@ function createChoreList(){
 
 
 
-    // fetches/POST/PATCHES/DELETE
+    // fetches
 
 function holidaysfetch(){
     fetch("https://date.nager.at/api/v2/publicholidays/2020/US") // returns a promise
@@ -230,10 +230,6 @@ function createchorelist(chores){
             <button id="delete"> Delete </button>
         </div>
     `
-    choreCard.querySelector("#delete").addEventListener('click', () =>{
-        choreCard.innerHTML= ''
-        deletechore(chores.id)
-    })
 
     // add chore to dom
     document.getElementById("chores-list").appendChild(choreCard)
@@ -258,21 +254,6 @@ function chorecreationlist(choreObj){
     .then(chores => console.log(chores))
 }
 
-function deletechore(id){
-    fetch(`http://localhost:3000/chores/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(resp => resp.json())
-    .then(chores => console.log(chores))
-
-}
-
-
-
 function codeHolder(){
     starter();
 }
-
