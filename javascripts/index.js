@@ -230,6 +230,9 @@ function createchorelist(chores){
             <button id="delete"> Delete </button>
         </div>
     `
+    choreCard.querySelector("#delete").addEventListener('click', () =>{
+        choreCard.innerHTML= ''
+    })
 
     // add chore to dom
     document.getElementById("chores-list").appendChild(choreCard)
